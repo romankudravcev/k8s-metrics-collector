@@ -45,7 +45,7 @@ spec:
       serviceAccountName: metrics-collector
       containers:
         - name: metrics-collector
-          image: metrics-collector:latest
+          image: ghcr.io/romankudravcev/k8s-metrics-collector:latest
           ports:
             - containerPort: 8089
           volumeMounts:
