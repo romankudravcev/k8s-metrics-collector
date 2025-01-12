@@ -5,6 +5,6 @@ WORKDIR /app
 COPY . .
 RUN go mod download
 
-RUN go build -o storage
+RUN go build -o metrics
 
-CMD ["./storage"]
+CMD ["./metrics"]
