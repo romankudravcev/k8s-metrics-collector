@@ -44,7 +44,7 @@ func main() {
 	}
 
 	// Start metrics collection
-	go collectMetrics()
+	go collectMetrics(config)
 
 	// Setup HTTP server
 	router := gin.Default()
@@ -79,7 +79,7 @@ func initDB() {
 	}
 }
 
-func collectMetrics() {
+func collectMetrics(config *rest.Config) {
 	ticker := time.NewTicker(30 * time.Second)
 	for range ticker.C {
 		// Get node metrics
