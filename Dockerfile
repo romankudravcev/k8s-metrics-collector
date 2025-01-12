@@ -16,9 +16,6 @@ RUN go build -o metrics
 # Final stage
 FROM alpine:edge
 
-# Set the working directory
-WORKDIR /app
-
 # Copy the binary from the builder stage
 COPY --from=builder /app/metrics /metrics
 
