@@ -1,26 +1,10 @@
-# Build stage
-FROM golang:1.23.4 AS builder
+FROM golang:1.23.4
 
 WORKDIR /app
 
-# Copy the go.mod and go.sum files to download dependencies first (if any)
-COPY go.mod ./
+COPY . .
 RUN go mod download
 
-# Copy the rest of the source code
-COPY . .
+RUN go build -o storage
 
-# Build the binary
-RUN go build -o metrics
-
-# Final stage
-FROM alpine:edge
-
-# Copy the binary from the builder stage
-COPY --from=builder /app/metrics /metrics
-
-# Expose the desired port
-EXPOSE 8089
-
-# Set the entrypoint
-CMD ["/metrics"]
+CMD ["./storage"]
