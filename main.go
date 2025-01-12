@@ -49,7 +49,7 @@ func main() {
 	router.POST("/metrics/benchmark", startBenchmark)
 	router.POST("/metrics/reset", resetDB)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8089", router))
 }
 
 func initDB() {
