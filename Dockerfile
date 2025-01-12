@@ -14,12 +14,15 @@ COPY . .
 RUN go build -o metrics
 
 # Final stage
-FROM gcr.io/distroless/base-debian11
+FROM debian:bullseye-slim
+
+# Install runtime dependencies
+RUN apt update && apt install -y libc6 libsqlite3-0 && apt clean
 
 # Copy the binary from the builder stage
 COPY --from=builder /app/metrics /metrics
 
-# Expose the desired port
+# Expose the port used by your application
 EXPOSE 8089
 
 # Set the entrypoint
