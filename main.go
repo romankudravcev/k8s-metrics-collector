@@ -80,7 +80,8 @@ func initDB() {
 }
 
 func collectMetrics(config *rest.Config) {
-	ticker := time.NewTicker(30 * time.Second)
+
+	ticker := time.NewTicker(100 * time.Millisecond)
 	for range ticker.C {
 		// Get node metrics
 		nodes, err := metricsClient.MetricsV1beta1().NodeMetricses().List(context.TODO(), metav1.ListOptions{})
